@@ -1,5 +1,3 @@
-Viewed basic-01-unit-drivers-ports.html:1-381
-
 針對 **`basic-01-unit-drivers-ports` (驅動程式與通訊埠)** 單元，這是硬體開發的最前哨站。它要求學員克服開發環境與實體硬體之間的第一道高牆：「連線穩定度」。透過對 **波特率 (Baud Rate)** 的理解與 **Loopback (環回測試)** 的實作，學員能學會如何科學地排除硬體通聯故障。
 
 以下是在 **GitHub Classroom** 部署其作業 (Assignments) 的具體建議：
