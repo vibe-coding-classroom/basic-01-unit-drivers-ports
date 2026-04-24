@@ -48,6 +48,6 @@ jobs:
         env:
           CHECK_BAUD_RATE_RESULTS: "${{steps.check_baud_rate.outputs.result}}"
           CHECK_DIAGNOSTIC_RESULTS: "${{steps.check_diagnostic.outputs.result}}"
-          CHECK_ASSETS_RESULTS: "${{steps.check-assets.outputs.result}}"
+          CHECK_ASSETS_RESULTS: "${{steps.check_assets.outputs.result}}"
         with:
           runners: check_baud_rate,check_diagnostic,check_assets
