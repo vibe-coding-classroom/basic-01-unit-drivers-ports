@@ -1,0 +1,53 @@
+name: GitHub Classroom Autograding
+on: [push]
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  build:
+    name: Autograding
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check platformio.ini monitor_speed
+        id: check_baud_rate
+        uses: education/autograding-command-grader@v1
+        with:
+          test-name: "Baud Rate Check"
+          setup-command: ""
+          command: "grep -i \"monitor_speed = 115200\" platformio.ini"
+          timeout: 10
+          max-score: 40
+
+      - name: Check Diagnostic Report existence
+        id: check_diagnostic
+        uses: education/autograding-command-grader@v1
+        with:
+          test-name: "Diagnostic Report Check"
+          setup-command: ""
+          command: "test -f docs/Diagnostic.md"
+          timeout: 10
+          max-score: 30
+
+      - name: Check Screenshot evidence
+        id: check_assets
+        uses: education/autograding-command-grader@v1
+        with:
+          test-name: "Evidence Check"
+          setup-command: ""
+          command: "test -f assets/serial_ok.png"
+          timeout: 10
+          max-score: 30
+
+      - name: Autograding Reporter
+        uses: education/autograding-grading-reporter@v1
+        env:
+          CHECK_BAUD_RATE_RESULTS: "${{steps.check_baud_rate.outputs.result}}"
+          CHECK_DIAGNOSTIC_RESULTS: "${{steps.check_diagnostic.outputs.result}}"
+          CHECK_ASSETS_RESULTS: "${{steps.check-assets.outputs.result}}"
+        with:
+          runners: check_baud_rate,check_diagnostic,check_assets
